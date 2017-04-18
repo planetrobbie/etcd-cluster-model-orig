@@ -1,0 +1,13 @@
+applications:
+  - etcd
+parameters:
+  etcd:
+    server:
+      enabled: true
+      bind:
+        host: ${ip_address}
+      token: $(uuidgen)
+      members:
+      - host: 172.16.52.139
+        name: etcd-01
+        port: 4001

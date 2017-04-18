@@ -1,0 +1,6 @@
+applications:
+  - hostfile
+parameters:
+  linux:
+    system:
+      name: ${hostname}

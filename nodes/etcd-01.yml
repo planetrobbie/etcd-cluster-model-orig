@@ -1,0 +1,6 @@
+classes:
+  - common
+  - etcd-cluster
+parameters:
+  hostname: etcd-01
+  ip_address: 172.16.52.139
