@@ -11,3 +11,9 @@ parameters:
       - host: 172.16.52.139
         name: etcd-01
         port: 4001
+      - host: 172.16.52.140
+        name: etcd-02
+        port: 4001
+      - host: 172.16.52.141
+        name: etcd-03
+        port: 4001
