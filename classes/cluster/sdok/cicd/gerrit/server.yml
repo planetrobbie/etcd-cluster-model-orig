@@ -1,0 +1,48 @@
+classes:
+  - service.postgresql.server.local
+  - service.gerrit.server.single
+parameters:
+  gerrit:
+    server:
+      canonical_web_url: http://${ip_address}:8082/
+      email_private_key: ""
+      token_private_key: ""
+      admin:
+        name: admin
+        password: ${_param:gerrit_password}
+        public_key: ${_param:public_key}
+      plugin:
+        download-commands:
+          engine: gerrit
+        reviewnotes:
+          engine: gerrit
+        singleusergroup:
+          engine: gerrit
+      ssh_rsa_key: ${_param:private_key}
+      ssh_rsa_key_pub: ${_param:public_key}
+      email: ${_param:admin_email}
+      auth:
+        engine: openid
+      source:
+        engine: http
+        address: https://gerrit-releases.storage.googleapis.com/gerrit-2.13.7.war
+        hash: sha256=8792c74780dde3f8cc936b33af96033297b9beeffb847583c328a80196a6e9a0
+      database:
+        engine: postgresql
+        host: localhost
+        port: 5432
+        name: gerrit
+        user: gerrit
+        password: ${_param:gerrit_password}
+    postgresql:
+      database:
+        gerrit:
+          enabled: true
+          encoding: 'UTF8'
+          locale: 'en_US'
+          users:
+          - name: gerrit
+            password: ${_param:gerrit_password}
+            host: localhost
+            rights: all privileges
+            createdb: true

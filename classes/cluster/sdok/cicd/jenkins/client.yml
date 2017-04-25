@@ -1,0 +1,66 @@
+classes:
+  - service.jenkins.client
+parameters:
+  _param:
+    jenkins_client_user: admin
+    jenkins_client_password: ${_param:jenkins_password}
+    jenkins_master_host: ${ip_address}
+    jenkins_master_port: 8080
+  jenkins:
+    url: http://172.16.52.139:8080
+    user: ${_param:jenkins_client_user}
+    password: ${_param:jenkins_password}
+    client:
+      master:
+        host: ${_param:jenkins_master_host}
+        port: ${_param:jenkins_master_port}
+        user: ${_param:jenkins_client_user}
+        password: ${_param:jenkins_client_password}
+      plugin:
+        ansicolor: {}
+        build-blocker-plugin: {}
+        build-monitor-plugin: {}
+        build-user-vars-plugin: {}
+#        categorized-view: {}
+        description-setter: {}
+        discard-old-build: {}
+        docker-workflow: {}
+        extended-choice-parameter: {}
+        extensible-choice-parameter: {}
+        gerrit-trigger: {}
+        git: {}
+        heavy-job: {}
+        ldap: {}
+        matrix-auth: {}
+        monitoring: {}
+        pipeline-utility-steps: {}
+        rebuild: {}
+        simple-theme-plugin: {}
+        slack: {}
+        test-stability: {}
+        timestamper: {}
+        workflow-cps: {}
+        workflow-remote-loader: {}
+        workflow-scm-step:
+          restart: true
+      lib:
+        etcd-cluster-model:
+          enabled: true
+          url: ${_param:jenkins_gerrit_url}/sdok/etcd-cluster
+          credential_id: admin
+      view:
+        Mirrors:
+          enabled: true
+          type: CategorizedJobsView
+          include_regex: "git-mirror-.*"
+          categories:
+            - group_regex: "git-mirror-2way-.*"
+              naming_rule: "2way"
+            - group_regex: "git-mirror-(?!upstream-|2way-).*"
+              naming_rule: "Downstream"
+            - group_regex: "git-mirror-upstream-.*"
+              naming_rule: "Upstream"
+        Tests:
+          enabled: true
+          type: ListView
+          include_regex: "test-.*"

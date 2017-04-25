@@ -1,0 +1,4 @@
+classes:
+  - cluster.sdok.cicd
+parameters:
+  ip_address: 172.16.52.139

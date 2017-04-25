@@ -1,0 +1,86 @@
+classes:
+  - service.gerrit.client
+parameters:
+  gerrit:
+    client:
+      enabled: True
+      dir:
+        gerrit_config: /srv/gerrit/review_site/etc/gerrit.config
+        gerrit_secure_config: /srv/gerrit/review_site/etc/secure.config
+      try_login: true
+      source:
+        engine: pip
+      server:
+        host: ${ip_address}
+        user: admin
+        email: ${_param:admin_email}
+        auth_method: basic
+        http_port: 8082
+        ssh_port: 29418
+        protocol: http
+        password: ${_param:gerrit_password}
+        key: ${_param:private_key}
+      user:
+        admin:
+          ssh_key: ${_param:public_key}
+        planetrobbie:
+          fullname: Sebastien Braun
+          email: "sebbraun@gmail.com"
+          ssh_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3odU+3V2uDA2ptAFL9hrJRPNEEdAyztWOZFQ5Oyd9oerTGOU3p4xmrgWWjfKFKbYGhiiIUcYAol5PkTfKukGEkkjCHYA1t023soCaaAj85wCZCnw2zQNAziwxTYmAzTqgxiSvtZNMMrtJvFHRIRDzJ3M1lV0prWNWkMM1/3FAd4W49y6VT3fkMCo8uqG7CfGdgR2DgBCxf9KaNPfW5eDEPOgmE5lK8tVSEI6T+Cg7hbcTf4lFYnlFBnlQgp/0JstsM4Vbwb4B34LOpOsf2S8rrWk2xQMjwaMHXkc2s/E8iW3F5nVFuyEXYISFQIiAHw8dzC6CHgLcyHUVWwznKawZ
+          groups:
+          - devops-core
+          - devops-release
+      group:
+        Event Streaming Users:
+          description: Event Streaming Users
+        devops-core:
+          description: Core maintainers
+        devops-release:
+          description: Release engineers
+        devops-contrib:
+          description: Service developers
+      default_access:
+        "refs/*":
+          actions:
+          - name: read
+            group: Non-Interactive Users
+        "refs/heads/*":
+          actions:
+          - name: abandon
+            group: devops-core
+          - name: create
+            group: devops-core
+          labels:
+          - name: label-Code-Review
+            group: devops-core
+            score: -2..+2
+          - name: label-Code-Review
+            group: Non-Interactive Users
+            score: -1..+1
+          - name: label-Verified
+            group: Non-Interactive Users
+            score: -1..+1
+          - name: label-Workflow
+            group: devops-core
+            score: -1..+1
+        "refs/tags/*":
+          actions:
+          - name: pushSignedTag
+            group: devops-core
+          - name: create
+            group: devops-core
+          - name: push
+            group: devops-core
+          - name: forgeCommitter
+            group: devops-core
+          - name: forgeAuthor
+            group: devops-core
+      project:
+        sdok/etcd-cluster:
+          enabled: true
+          description: etcd cluster model
+          upstream: https://github.com/planetrobbie/etcd-cluster-model
+          access: ${gerrit:client:default_access}
+          require_change_id: true
+          require_agreement: false
+          merge_content: true

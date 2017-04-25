@@ -1,0 +1,31 @@
+classes:
+  - service.java.environment.openjdk8
+  - cluster.sdok.cicd.gerrit.server
+  - cluster.sdok.cicd.gerrit.client
+  - cluster.sdok.cicd.jenkins.master
+  - cluster.sdok.cicd.jenkins.client
+parameters:
+  _param:
+    admin_email: mail@domain.com
+
+    # Gerrit
+    gerrit_password: sdok-postgresql
+
+    # Jenkins
+    #jenkins_admin_token:
+    jenkins_password: sdok-jenkins
+    jenkins_admin_password: ${_param:jenkins_password}
+    jenkins_slave_password: ${_param:jenkins_password}
+    jenkins_client_password: ${_param:jenkins_password}
+    jenkins_slave_user: admin
+    jenkins_client_user: admin
+    jenkins_admin_email: ${_param:admin_email}
+    jenkins_admin_public_key: ${_param:public_key}
+    jenkins_admin_private_key: ${_param:private_key}
+    jenkins_admin_token: xxxxxxxxxxxx
+    # Jobs params
+    jenkins_gerrit_url: ssh://admin@${ip_address}:29418
+
+    # Keys
+    private_key: /etc/ssh/ssh_host_rsa_key
+    public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC4ZSyROyPp6Kj0OyBS1k5QBEjyq+cIdZohFBPo2O6elqEykXNMhM0TfqMShfImsrSrf7lNv0Gc8jSWP0r80L8dpdbBkafqKLOuXuVGinKvoDvcGjK3CCLXgVr54pZtX9TiIEoTL55hf5fCpRRpb8ujDhMyV1XKtJCiujmmr0494IzTFCb4tuz3ZfuFgC0K1XUksJLfoY+I+lLEP8AA6o2SrOF48i5+4768A2hCxVYzLsWir3WH+hoFiwxLuwFPwVeis7CVc52wfAVnWZdMROjwyLYxTyzXEZm20CmBTCulA8oOwF3gIOvKQdfnDyGih2kQZFuiOakgwLoO6sXSHtRz root@saltstack-m01
