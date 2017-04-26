@@ -1,6 +1,110 @@
 classes:
-  - common
+ - common
   - etcd-cluster
+applications:
+  - postgresql
+  - java
+  - gerrit
 parameters:
+  _param:
+    private_key: |
+      ----BEGIN RSA PRIVATE KEY-----
+      Proc-Type: 4,ENCRYPTED
+      DEK-Info: AES-128-CBC,8C0E0C0FD8D7D713A65841FDEB8776ED
+
+      qln+ND0DtPD7r5s8KESg2g33alw9C9Ey9yp2byl+ozup65qcqAxcA1V76DLn67Jj
+      94mdkK8acErshTQ5IJjRQlExOfEF2MOdItIMFAqAa80Uy/vJhAaePYNpXww9G4R8
+      5Pl//d5LVWEspvPJt8Fxo8ysUPdoA2p/C9owC8K/tlg3n5YO2/qFpvGRDxR3D4iX
+      SkHO0/rkDtgRswAsSVzUAtBoUYoerT6REOSE4fDwxbVvNv/FohrAJmsvr5yblWqJ
+      w952f0f9lF2ihktJaKXdrIvJ6nnwikzt1Ggn9uZVenatG72sTVHWBA6ZFDSRK4xk
+      sQmsU7m21kT1LJqyA6gV/HNfzqQAzPcUgRM4Sx8HBWbo4u1F66LkLKjBY3VW6NZD
+      a6TUY+4feAeCCvAJvGKHD+PugDv+scOrcoHSk3KGcN65y0zaRFs73OsPzV10JkC0
+      UQNdWbJvqDQCf27FyYGStdy4jGtjN1Z3sp3NJuFG+lsshLuoIw0rpsX89zm5lsfR
+      4zTnV62anFElMeuX2SQCUlnjbVBlpYF4PADQM1/cNOyDDD1VrMq5tZTNr4awJvKH
+      hV4DwSzEgSIYD7iIYJKwVj2oK6AEeskf1j9lsiA/BuM0nSPuFAYtxRS8sC3JD9+0
+      UcUuVrvjLgGemUitC+5lE2grdMXvNum8sOm3R4OjvbAXPmxnwEhlBiTSVkaUWiPe
+      boARH6b4GM/q+cMtyT5WU7tpx4MhGii2JwbxgMvuE/d+nEwrUfYREND4UiYhzmCP
+      bpH6/kj58x+mMJB7pApc8yicthBGSK+3oFyEaK47WgcX93k3HqQ0GbdJiVAjjpO4
+      w7zr3w40ItNIMkN7dVWW/SB2xojuzPiNvIOeE4Bl4nfuWUYWNPty7vYnDeW1kvY1
+      Y84c60p8iWDOxyM6iPt8E0HFMxFoN27WueNI/psggOWNu0Tzlw9nJnLpV0yvVixC
+      zqFeOKdusXp7jdJAWoOk3NWVjOdtAQ1/aERyGQLKOcbqB27JfETaZhd/kIPvYlw8
+      o+azKsCN/SXSOONmDbyiEbV+N7nXoo2rXPGdD4a85ccRBaQtk9XNhADT/cUSUKlH
+      6qKi3ANVpMzJNw/x9Yl/YjLEEb9+pOgcpLBg1Rqezn3u4g6YTFTDwX+5yuMhy/03
+      8M9lllmCOgrRv7lRZXJbJFtfep8oAHkc3fASpSyTIkIenivLf2bPzL9/adRfFJam
+      /s6N+C8xXktxM031RPo4Ut0dWLAp5gb32I19lZDH5sH4Kekq+2BsC0cHEa6HLuIY
+      4iPgASFsSWWMAr80fvK7ejRdu0w9flh2SRZ17buGjLnxzz7f2s5QzZ1NGvA0dNJT
+      7G2rTX74pGwlrmfIZ+9yHDku94R4NtmYKG1KgvO47rdC3E5VqK15abn8Iw/zCux/
+      ldYj/CXqz0ltarhUhttQ35LtIYl1GVur0ATxO+cNZ4wowHrDC6k+qV99MoEtjMB5
+      DYJkpcLBXSk4z+bxkstVuzcte5e8+V00OMohCSYrgLaYIwvCzbOe4/IZ3bKoiDHx
+      qIFJaWvbOIUSjgVmJFjKmLw8foYY+w9plHedvLC7RI1DevylomZ3mgsM5hvcQ7Rx
+      -----END RSA PRIVATE KEY-----
+    public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDCdvb2aPES+H5+McRueB3EYbpdG/685pIJCH6mbFmTsIHlQobcJSSYtqww7ji/m6/KuMGE/Wc5f06d5v+beslfHKLaaAKXwWBpDgO77zwO42PbFPreFXKg8sNLPmqB+WEyIX7yAaJNxz0bbQgo2Vl3Bhtv/79zZXpzo0DIXNtdi75vwzWpuiyRuhC7pNqz+VXFZAVtkA+EchogDnT7rLa8ullSwuSgk5iPC6/XsuwL5Z5/UGBx4OT9Y8+cjb3g2oE9N3hdJH8wp9ts6stvKgAZ/5EE+LuCVhtKCvQ0sbZY8DmH99HFIP7SQoNQoyD8ALKbyCxGdF4/kxsqSlnLM5bR sebbraun@gmail.com
+    postgresql_password: sdok-postgresql
   hostname: etcd-01
   ip_address: 172.16.52.139
+  java:
+    environment:
+      enabled: true
+      version: "8"
+      platform: openjdk
+      development: true
+  gerrit:
+    server:
+      enabled: true
+      bind:
+        address: 0.0.0.0
+      canonical_web_url: http://172.16.52.139:8083/
+      email_private_key: ""
+      token_private_key: ""
+      admin:
+        name: admin
+        password: sdok-gerrit
+        public_key: ${_param:public_key}
+      plugin:
+        download-commands:
+          engine: gerrit
+        reviewnotes:
+          engine: gerrit
+        singleusergroup:
+          engine: gerrit
+      ssh_rsa_key: ${_param:private_key}
+      ssh_rsa_key_pub: ${_param:public_key}
+      email: mail@domain.com
+      auth:
+        engine: DEVELOPMENT_BECOME_ANY_ACCOUNT
+      mail:
+        host: localhost
+        from: gerrit@domain.com
+        include_diff: true
+      source:
+        engine: http
+        address: https://gerrit-releases.storage.googleapis.com/gerrit-2.13.war
+        hash: sha256=45786a920a929c6258de6461bcf03ddec8925577bd485905f102ceb6e5e1e47c
+      database:
+        engine: postgresql
+        host: localhost
+        port: 5432
+        name: gerrit
+        user: gerrit
+        password: ${_param:postgresql_password}
+  postgresql:
+    server:
+      enabled: true
+      version: "9.5"
+      bind:
+        address: '127.0.0.1'
+        port: 5432
+        protocol: tcp
+      clients:
+      - '127.0.0.1'
+      database:
+        gerrit:
+          enabled: true
+          encoding: 'UTF8'
+          locale: 'en_US'
+          users:
+          - name: gerrit
+            password: ${_param:postgresql_password}
+            host: localhost
+            rights: all privileges
+            createdb: true
