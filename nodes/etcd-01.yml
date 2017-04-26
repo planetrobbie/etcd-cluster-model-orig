@@ -1,11 +1,11 @@
 classes:
-   common
+  - common
   - etcd-cluster
 applications:
   - postgresql
   - java
   - gerrit
-arameters:
+parameters:
   _param:
     private_key: |
       ----BEGIN RSA PRIVATE KEY-----
