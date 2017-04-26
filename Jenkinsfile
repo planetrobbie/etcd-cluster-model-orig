@@ -1,4 +1,5 @@
 pipeline {
+  triggers { pollSCM('H/5 * * * *') }
   agent any
   stages {
     stage('Install Salt Formulas Service Metadata into Workspace') {
@@ -26,11 +27,6 @@ pipeline {
   post {
     always {
       sh 'rm -rf service'
-      
     }
-    
-  }
-  triggers {
-    pollSCM('H/5 * * * *')
   }
 }
