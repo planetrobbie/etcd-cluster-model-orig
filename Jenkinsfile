@@ -1,9 +1,10 @@
 pipeline {
   agent any
+  triggers { pollSCM('H/5 * * * *') }
   stages {
     stage('Install Salt Formulas Service Metadata into Workspace') {
       steps {
-        dir(path: 'service') {
+        dir('service') {
           sh 'for i in /usr/share/salt-formulas/reclass/service/*; do ln -s $i .; done'
         }
         
@@ -29,8 +30,5 @@ pipeline {
         deleteDir()
       }
     }
-  }
-  triggers {
-    pollSCM('H/5 * * * *')
   }
 }
