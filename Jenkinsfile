@@ -1,57 +1,30 @@
-#!groovy
+pipeline {
+    agent any
 
-node('node') {
-
-    currentBuild.result = "SUCCESS"
-
-    try {
-
-       stage('Checkout'){
-
-          checkout scm
-       }
-
-       stage('Install Service Metadata into Workspace'){
-
-         sh 'for i in /usr/share/salt-formulas/reclass/service/*; do ln -s $i service/; done'
-       }
-
-       stage('Topfile Lint){
-
-            sh '/usr/local/sbin/salt-reclass --top -b .'
-       }
-
-       stage('Pillar Lint for node-01'){
-
-         echo 'Lint Pillar for Node-01'
-         sh '/usr/local/sbin/salt-reclass --pillar node-01 -b .'
-
-       }
-
-       stage('Cleanup Service Metadata'){
-
-         echo 'Cleanup Service Metadata'
-         sh 'rm -rf service'
-
-         mail body: 'project build successful',
-                     from: 'jenkins@domain.com',
-                     replyTo: 'jenkins@domain.com',
-                     subject: 'project build successful',
-                     to: 'sebbraun@gmail.com'
-       }
-
+    stages {
+        stage('Install Service Metadata into Workspace') {
+            steps {
+                sh 'for i in /usr/share/salt-formulas/reclass/service/*; do ln -s $i service/; done'  
+            }
+        }
+        stage('Topfile Lint') {
+            steps {
+                sh '/usr/local/sbin/salt-reclass --top -b .'  
+            }
+        }
+        stage('Pillar Lint for etcd cluster nodes') {
+            steps {
+                echo 'Lint Pillar for Node-01'
+                sh '/usr/local/sbin/salt-reclass --pillar etcd-01 -b .'
+                sh '/usr/local/sbin/salt-reclass --pillar etcd-02 -b .'
+                sh '/usr/local/sbin/salt-reclass --pillar etcd-03 -b .'
+            }
+        }
+        stage('Cleanup Service Metadata') {
+            steps {
+                echo 'Cleanup Service Metadata'
+                sh 'rm -rf service' 
+            }
+        }
     }
-    catch (err) {
-
-        currentBuild.result = "FAILURE"
-
-            mail body: "project build error is here: ${env.BUILD_URL}" ,
-            from: 'jenkins@domain.com',
-            replyTo: 'jenkins@domain.com',
-            subject: 'Salt Lint failed',
-            to: 'sebbraun@gmail.com'
-
-        throw err
-    }
-
 }
