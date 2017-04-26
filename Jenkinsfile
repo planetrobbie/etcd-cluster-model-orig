@@ -24,7 +24,9 @@ pipeline {
     stage('Cleanup Service Metadata') {
       steps {
         echo 'Cleanup Service Metadata'
-        sh 'rm -rf service'
+        dir('directoryToDelete') {
+          deleteDir()
+        }
       }
     }
   }
