@@ -22,13 +22,11 @@ pipeline {
         sh '/usr/local/sbin/salt-reclass --pillar etcd-03 -b .'
       }
     }
-    stage('Cleanup Service Metadata') {
-      steps {
-        echo 'Cleanup Service Metadata, current dir is $PWD'
-        sh 'pwd'
-        dir('/service') {
-          deleteDir()
-        }
+  }
+  post {
+    always {
+      dir('service') {
+        deleteDir()
       }
     }
   }
