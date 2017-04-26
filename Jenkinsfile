@@ -26,9 +26,7 @@ pipeline {
   }
   post {
     always {
-      dir('service') {
-        deleteDir()
-      }
+      sh 'rm -rf service'
     }
   }
 }
