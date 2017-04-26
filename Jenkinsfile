@@ -25,7 +25,7 @@ pipeline {
     stage('Cleanup Service Metadata') {
       steps {
         echo 'Cleanup Service Metadata'
-        dir('../service') {
+        dir('service') {
           deleteDir()
         }
       }
