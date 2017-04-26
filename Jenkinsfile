@@ -1,8 +1,6 @@
-
-vy
+#!groovy
 
 node('node') {
-
 
     currentBuild.result = "SUCCESS"
 
@@ -41,8 +39,6 @@ node('node') {
                      subject: 'project build successful',
                      to: 'sebbraun@gmail.com'
        }
-
-
 
     }
     catch (err) {
