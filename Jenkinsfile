@@ -24,8 +24,9 @@ pipeline {
     }
     stage('Cleanup Service Metadata') {
       steps {
-        echo 'Cleanup Service Metadata'
-        dir('service') {
+        echo 'Cleanup Service Metadata, current dir is $PWD'
+        sh 'pwd'
+        dir('/service') {
           deleteDir()
         }
       }
