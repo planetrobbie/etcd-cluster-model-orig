@@ -2,10 +2,10 @@ pipeline {
   agent any
   triggers { pollSCM('H/5 * * * *') }
   stages {
-    stage('Install Service Metadata into Workspace') {
+    stage('Install Salt Formulas Service Metadata into Workspace') {
       steps {
-        sh 'mkdir service'
-        sh 'for i in /usr/share/salt-formulas/reclass/service/*; do ln -s $i service/; done'
+        dir('service') {
+        sh 'for i in /usr/share/salt-formulas/reclass/service/*; do ln -s $i .; done'
       }
     }
     stage('Topfile Lint') {
@@ -24,7 +24,7 @@ pipeline {
     stage('Cleanup Service Metadata') {
       steps {
         echo 'Cleanup Service Metadata'
-        dir('directoryToDelete') {
+        dir('service') {
           deleteDir()
         }
       }
