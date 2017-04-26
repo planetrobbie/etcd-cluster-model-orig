@@ -3,7 +3,8 @@ pipeline {
   stages {
     stage('Install Service Metadata into Workspace') {
       steps {
-        sh 'for i in /usr/share/salt-formulas/reclass/service/*; do ln -s $i service/; done'
+        sh '''mkdir service
+for i in /usr/share/salt-formulas/reclass/service/*; do ln -s $i service/; done'''
       }
     }
     stage('Topfile Lint') {
