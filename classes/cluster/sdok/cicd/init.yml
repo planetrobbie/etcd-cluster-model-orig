@@ -12,20 +12,42 @@ parameters:
     gerrit_password: sdok-postgresql
 
     # Jenkins
-    #jenkins_admin_token:
     jenkins_password: sdok-jenkins
     jenkins_admin_password: ${_param:jenkins_password}
-    jenkins_slave_password: ${_param:jenkins_password}
     jenkins_client_password: ${_param:jenkins_password}
-    jenkins_slave_user: admin
     jenkins_client_user: admin
     jenkins_admin_email: ${_param:admin_email}
     jenkins_admin_public_key: ${_param:public_key}
     jenkins_admin_private_key: ${_param:private_key}
     jenkins_admin_token: xxxxxxxxxxxx
-    # Jobs params
-    jenkins_gerrit_url: ssh://admin@${ip_address}:29418
 
     # Keys
-    private_key: /etc/ssh/ssh_host_rsa_key
+    private_key: |
+      -----BEGIN RSA PRIVATE KEY-----
+      MIIEowIBAAKCAQEAuGUskTsj6eio9DsgUtZOUARI8qvnCHWaIRQT6NjunpahMpFz
+      TITNE36jEoXyJrK0q3+5Tb9BnPI0lj9K/NC/HaXWwZGn6iizrl7lRopyr6A73Boy
+      twgi14Fa+eKWbV/U4iBKEy+eYX+XwqUUaW/Low4TMldVyrSQoro5pq9OPeCM0xQm
+      +Lbs92X7hYAtCtV1JLCS36GPiPpSxD/AAOqNkqzhePIufuO+vANoQsVWMy7Foq91
+      h/oaBYsMS7sBT8FXorOwlXOdsHwFZ1mXTETo8Mi2MU8s1xGZttApgUwrpQPKDsBd
+      4CDrykHX5w8hoodpEGRbojmpIMC6DurF0h7UcwIDAQABAoIBAQCL8LSvD4wE8/5t
+      RAYW9+99CJN4H//5So8LdZpah3AoyTZTE1HGi667kcsevqr0tYEp+ofeOj0IaESC
+      lkxJq/6u+HIQe4NM0VD0D66/J0k8gkWLmBJPGAyhMtmhdVYmcak1Z73v656ubc/1
+      96STFDYebAsjlGZWrUxrQxuHpdmiWOHnpwqDpBcbslju8lrKfIMh4LHoGfrh+Yaw
+      O97D03d831Ebg2nj4c2nPdlrKYdtPMjRFkhr1a0yynZuatL4l6yJCpZpyxxheR6o
+      xLdikqSqHe1nb+tMyAHePbxurtElltDFLlH2Dg0jRhhmIJXp/6BWQlg2naayVYjo
+      s9pYRsvxAoGBAPCbfWF3T6kkNoTF1QbcR7OFlDCP/hh9AKUxmG4/P2ir4RVFaBwh
+      9siFUZaKRDN+s5QqrP4UaoeevYLM70hA5YU3usdw00Vj0zEWQTwvA/yxzt7hqLaa
+      JtnTzCcF1CPhJ9dx95ZEasUeBj8aXoGyiFoe0NbZVBLLeaG+bG/j6YqrAoGBAMQx
+      FAOvC2Vn0fwPwWqvYNb8KmvUPkDICsiSDGsOUpzkvk/7k+KXayZan61zAPca9/qG
+      QZfE74C8AmA0wkvtegGc41OiUgFslD2J+onCvf7ZSDvDwuvgOMVM22Kxw5m9ODpN
+      B6kpUAbolL7xgc02meFwYERQDfWTG7rJJbPrqN1ZAoGANZ6hMXBSW2JLmAkycSX0
+      AKjbHntoZ/KriyTjUGZd7iinr4LZMbPL+GHljcPgcQ1iXbmo9bJ9Dx4sI5MiHBsC
+      S07hHAMjwgn+Dalk/lGH9O93J6poW9E8qTyO+X9OCHTr2RJ315AFr0oCoFtzBjpQ
+      Mq09YzPpjYq033u9VK4Y5KMCgYAzYptYX6d/dtLDzyiclbSqej9uIJfxhbN1VvNT
+      stumZi8GaeEQ7xHMaN37oux0zCZ5AmL5qkYElLmWkxr0og1bkMjlpdUOtG6bM6Fg
+      JZZ3wlct+Bb8iqyz2G55ig+uG6Y3dudzwfNI6+/RlxWlNxDUwAcmvUT6tf4ETRzH
+      5AhFeQKBgCzccC6aRtY+uGkS1TN4kVUkndL5LnAuPAng+/+34uemPNQlv7Sa2CoK
+      6Oau5Di/9E42lHf5x2g+FQLBNfQN1FbbNenJHMzhFtfQ1WAv1uGqM/72Lf9VOKsK
+      mnFcjmZLbZHtPIkMznH6RVPCZmof1aUjKf8Z/onWgFSQio6/qAO0
+      -----END RSA PRIVATE KEY-----
     public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC4ZSyROyPp6Kj0OyBS1k5QBEjyq+cIdZohFBPo2O6elqEykXNMhM0TfqMShfImsrSrf7lNv0Gc8jSWP0r80L8dpdbBkafqKLOuXuVGinKvoDvcGjK3CCLXgVr54pZtX9TiIEoTL55hf5fCpRRpb8ujDhMyV1XKtJCiujmmr0494IzTFCb4tuz3ZfuFgC0K1XUksJLfoY+I+lLEP8AA6o2SrOF48i5+4768A2hCxVYzLsWir3WH+hoFiwxLuwFPwVeis7CVc52wfAVnWZdMROjwyLYxTyzXEZm20CmBTCulA8oOwF3gIOvKQdfnDyGih2kQZFuiOakgwLoO6sXSHtRz root@saltstack-m01

@@ -26,7 +26,7 @@ parameters:
         planetrobbie:
           fullname: Sebastien Braun
           email: "sebbraun@gmail.com"
-          ssh_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3odU+3V2uDA2ptAFL9hrJRPNEEdAyztWOZFQ5Oyd9oerTGOU3p4xmrgWWjfKFKbYGhiiIUcYAol5PkTfKukGEkkjCHYA1t023soCaaAj85wCZCnw2zQNAziwxTYmAzTqgxiSvtZNMMrtJvFHRIRDzJ3M1lV0prWNWkMM1/3FAd4W49y6VT3fkMCo8uqG7CfGdgR2DgBCxf9KaNPfW5eDEPOgmE5lK8tVSEI6T+Cg7hbcTf4lFYnlFBnlQgp/0JstsM4Vbwb4B34LOpOsf2S8rrWk2xQMjwaMHXkc2s/E8iW3F5nVFuyEXYISFQIiAHw8dzC6CHgLcyHUVWwznKawZ
+          ssh_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC4ZSyROyPp6Kj0OyBS1k5QBEjyq+cIdZohFBPo2O6elqEykXNMhM0TfqMShfImsrSrf7lNv0Gc8jSWP0r80L8dpdbBkafqKLOuXuVGinKvoDvcGjK3CCLXgVr54pZtX9TiIEoTL55hf5fCpRRpb8ujDhMyV1XKtJCiujmmr0494IzTFCb4tuz3ZfuFgC0K1XUksJLfoY+I+lLEP8AA6o2SrOF48i5+4768A2hCxVYzLsWir3WH+hoFiwxLuwFPwVeis7CVc52wfAVnWZdMROjwyLYxTyzXEZm20CmBTCulA8oOwF3gIOvKQdfnDyGih2kQZFuiOakgwLoO6sXSHtRz root@saltstack-m01
           groups:
           - devops-core
           - devops-release

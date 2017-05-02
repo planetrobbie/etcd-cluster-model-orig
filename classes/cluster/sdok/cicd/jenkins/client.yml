@@ -18,10 +18,11 @@ parameters:
         password: ${_param:jenkins_client_password}
       plugin:
         ansicolor: {}
+        blueocean: {}
         build-blocker-plugin: {}
         build-monitor-plugin: {}
         build-user-vars-plugin: {}
-#        categorized-view: {}
+        #categorized-view: {}
         description-setter: {}
         discard-old-build: {}
         docker-workflow: {}
@@ -33,6 +34,7 @@ parameters:
         ldap: {}
         matrix-auth: {}
         monitoring: {}
+        pipeline-github-lib: {}
         pipeline-utility-steps: {}
         rebuild: {}
         simple-theme-plugin: {}
@@ -43,11 +45,6 @@ parameters:
         workflow-remote-loader: {}
         workflow-scm-step:
           restart: true
-      lib:
-        etcd-cluster-model:
-          enabled: true
-          url: ${_param:jenkins_gerrit_url}/sdok/etcd-cluster
-          credential_id: admin
       view:
         Mirrors:
           enabled: true

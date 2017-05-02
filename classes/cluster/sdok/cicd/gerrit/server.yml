@@ -22,7 +22,7 @@ parameters:
       ssh_rsa_key_pub: ${_param:public_key}
       email: ${_param:admin_email}
       auth:
-        engine: openid
+        engine: development_become_any_account
       source:
         engine: http
         address: https://gerrit-releases.storage.googleapis.com/gerrit-2.13.7.war
